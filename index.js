@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const dotenv = require("dotenv")
+
+dotenv.config()
 
 mongoose
-  .connect(
-    "mongodb+srv://martin:1234@cluster0.qdvwy.mongodb.net/shop?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("DBConnection Successfull"))
   .catch((err) => {
     console.log(err);
@@ -14,3 +15,4 @@ mongoose
 app.listen(5000, () => {
   console.log("Backend server is running!");
 });
+ 
